@@ -10,6 +10,9 @@ import { State } from '../../../store/reducers';
 // Typescript
 import { ApiResponse, Weather, WeatherForm } from '../../../interfaces';
 
+// CSS
+import classes from './WeatherSettings.module.css';
+
 // UI
 import { InputGroup, Button, SettingsHeadline } from '../../UI';
 
@@ -97,92 +100,116 @@ export const WeatherSettings = (): JSX.Element => {
 
   return (
     <form onSubmit={(e) => formSubmitHandler(e)}>
-      <SettingsHeadline text="API" />
-      {/* API KEY */}
-      <InputGroup>
-        <label htmlFor="WEATHER_API_KEY">API key</label>
-        <input
-          type="text"
-          id="WEATHER_API_KEY"
-          name="WEATHER_API_KEY"
-          placeholder="secret"
-          value={formData.WEATHER_API_KEY}
-          onChange={(e) => inputChangeHandler(e)}
-        />
-        <span>
-          Using
-          <a href="https://www.weatherapi.com/pricing.aspx" target="blank">
+      <div className={classes.CategoryWrapper}>
+        <SettingsHeadline text="API" />
+        {/* API KEY */}
+        <InputGroup>
+          <label htmlFor="WEATHER_API_KEY">API Key</label>
+          <input
+            id="WEATHER_API_KEY"
+            name="WEATHER_API_KEY"
+            onChange={(e) => inputChangeHandler(e)}
+            placeholder="API Key"
+            type="text"
+            value={formData.WEATHER_API_KEY}
+          />
+          <span>
+            Using <a href="https://www.weatherapi.com/pricing.aspx" target="blank">Weather API</a>.
             {' '}
-            Weather API
-          </a>
-          . Key is required for weather module to work.
-        </span>
-      </InputGroup>
+            An API key is required the use the weather module.
+          </span>
+        </InputGroup>
+      </div>
 
-      <SettingsHeadline text="Location" />
-      {/* LAT */}
-      <InputGroup>
-        <label htmlFor="lat">Latitude</label>
-        <input
-          type="number"
-          id="lat"
-          name="lat"
-          placeholder="52.22"
-          value={formData.lat}
-          onChange={(e) => inputChangeHandler(e, { isNumber: true })}
-          step="any"
-          lang="en-150"
-        />
-        <span onClick={getLocation}>
-          <a href="#">Click to get current location</a>
-        </span>
-      </InputGroup>
+      <div className={classes.CategoryWrapper}>
+        <SettingsHeadline text="Location" />
 
-      {/* LONG */}
-      <InputGroup>
-        <label htmlFor="long">Longitude</label>
-        <input
-          type="number"
-          id="long"
-          name="long"
-          placeholder="21.01"
-          value={formData.long}
-          onChange={(e) => inputChangeHandler(e, { isNumber: true })}
-          step="any"
-          lang="en-150"
-        />
-      </InputGroup>
+        {/* LAT */}
+        <InputGroup>
+          <label htmlFor="lat">Latitude</label>
+          <input
+            id="lat"
+            lang="en-150"
+            name="lat"
+            onChange={(e) => inputChangeHandler(e, { isNumber: true })}
+            placeholder="52.22"
+            step="any"
+            type="number"
+            value={formData.lat}
+          />
+        </InputGroup>
 
-      <SettingsHeadline text="Other" />
-      {/* TEMPERATURE */}
-      <InputGroup>
-        <label htmlFor="isCelsius">Temperature unit</label>
-        <select
-          id="isCelsius"
-          name="isCelsius"
-          onChange={(e) => inputChangeHandler(e, { isBool: true })}
-          value={formData.isCelsius ? 1 : 0}
+        {/* LONG */}
+        <InputGroup>
+          <label htmlFor="long">Longitude</label>
+          <input
+            id="long"
+            lang="en-150"
+            name="long"
+            onChange={(e) => inputChangeHandler(e, { isNumber: true })}
+            placeholder="21.01"
+            step="any"
+            type="number"
+            value={formData.long}
+          />
+        </InputGroup>
+
+        <a
+          href="#"
+          onClick={getLocation}
         >
-          <option value={1}>Celsius</option>
-          <option value={0}>Fahrenheit</option>
-        </select>
-      </InputGroup>
+          Use Current Location
+        </a>
+      </div>
 
-      {/* WEATHER DATA */}
-      <InputGroup>
-        <label htmlFor="weatherData">Additional weather data</label>
-        <select
-          id="weatherData"
-          name="weatherData"
-          value={formData.weatherData}
-          onChange={(e) => inputChangeHandler(e)}
-        >
-          <option value="cloud">Cloud coverage</option>
-          <option value="humidity">Humidity</option>
-        </select>
-      </InputGroup>
+      <div className={classes.CategoryWrapper}>
+        <SettingsHeadline text="Other" />
+        {/* TEMPERATURE */}
+        <InputGroup>
+          <label htmlFor="isCelsius">Temperature Unit</label>
+          <select
+            id="isCelsius"
+            name="isCelsius"
+            onChange={(e) => inputChangeHandler(e, { isBool: true })}
+            value={formData.isCelsius ? 1 : 0}
+          >
+            <option value={1}>Celsius</option>
+            <option value={0}>Fahrenheit</option>
+          </select>
+        </InputGroup>
 
-      <Button>Save changes</Button>
+        {/* WEATHER DATA */}
+        <InputGroup>
+          <label htmlFor="weatherData">Additional Weather Data</label>
+          <select
+            id="weatherData"
+            name="weatherData"
+            onChange={(e) => inputChangeHandler(e)}
+            value={formData.weatherData}
+          >
+            <option value="cloud">Cloud Coverage</option>
+            <option value="humidity">Humidity</option>
+          </select>
+        </InputGroup>
+
+        {/* FULL DETAILS URL */}
+        <InputGroup>
+          <label htmlFor="weatherDetailsUrl">Full Details URL</label>
+          <input
+            id="weatherDetailsUrl"
+            name="weatherDetailsUrl"
+            onChange={(e) => inputChangeHandler(e)}
+            placeholder="https://weather.com/weather/today/l/..."
+            type="text"
+            value={formData.weatherDetailsUrl}
+          />
+          <span>
+            You can provide a URL here that will be linked to clicking on the Weather Widget
+          </span>
+        </InputGroup>
+      </div>
+
+      <Button type='submit'>Save Changes</Button>
     </form>
   );
 };

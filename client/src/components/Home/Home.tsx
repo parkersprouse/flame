@@ -162,7 +162,7 @@ export const Home = (): JSX.Element => {
       )}
 
       <Link to="/settings" className={classes.SettingsButton}>
-        <Icon icon="mdiCog" color="var(--color-background)" />
+        <Icon icon="mdiCog" color="var(--color-accent)" />
       </Link>
     </Container>
   );

@@ -8,11 +8,8 @@ const signToken = require('../../utils/signToken');
 const login = asyncWrapper(async (req, res, next) => {
   const { password, duration } = req.body;
 
-  const isMatch = process.env.PASSWORD == password;
-
-  if (!isMatch) {
-    return next(new ErrorResponse('Invalid credentials', 401));
-  }
+  const isMatch = String(process.env.ADMIN_PASSWORD) === String(password);
+  if (!isMatch) return next(new ErrorResponse('Invalid credentials', 401));
 
   const token = signToken(duration);
 

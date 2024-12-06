@@ -1,3 +1,7 @@
+.Header {
+  margin-bottom: 2.5rem;
+}
+
 .Header h1 {
   color: var(--color-primary);
   font-weight: 700;
@@ -5,18 +9,16 @@
   display: inline-block;
 }
 
-.Header p {
+.HeaderWeather {
   color: var(--color-primary);
   font-weight: 300;
   text-transform: uppercase;
-  height: 30px;
 }
 
 .HeaderMain {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2.5rem;
+  align-items: flex-start;
 }
 
 .SettingsLink {

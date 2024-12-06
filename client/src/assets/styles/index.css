@@ -1,0 +1,42 @@
+@import url('@fontsource-variable/inter');
+@import url('@fontsource-variable/inter/wght-italic.css');
+@import url('./_reset.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --color-background: #242b33;
+  --color-primary: #effbff;
+  --color-accent: #6ee2ff;
+  --spacing-ui: 1rem;
+
+  background-color: var(--color-background);
+  transition: background-color 0.3s;
+  font-size: 14px;
+
+  font-family:
+    'Inter Variable', /* ----- Primary font ----------- */
+    system-ui, /* ------ macOS system fonts ----------- */
+    -apple-system, /* -------- Safari on macOS >= 10.11 */
+    BlinkMacSystemFont, /* --- Chrome on macOS >= 10.11 */
+    'Segoe UI', /* ----------- >= Windows Vista ------- */
+    'Noto Sans', /* ---------- >= KDE Plasma 5 -------- */
+    'Helvetica',
+    'Arial',
+    sans-serif, /* ----------- fallback --------------- */
+    'Apple Color Emoji', /* -- macOS emoji ------------ */
+    'Segoe UI Emoji'; /* ----- Windows emoji ---------- */
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

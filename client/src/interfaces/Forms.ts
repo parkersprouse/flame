@@ -2,10 +2,11 @@ import { WeatherData } from '../types';
 
 export interface WeatherForm {
   WEATHER_API_KEY: string;
+  isCelsius: boolean;
   lat: number;
   long: number;
-  isCelsius: boolean;
   weatherData: WeatherData;
+  weatherDetailsUrl: string;
 }
 
 export interface GeneralForm {

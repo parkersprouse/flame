@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 // @access    Public
 const validate = asyncWrapper(async (req, res, next) => {
   try {
-    jwt.verify(req.body.token, process.env.SECRET);
+    jwt.verify(req.body.token, process.env.JWT_SECRET);
 
     res.status(200).json({
       success: true,

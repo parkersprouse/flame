@@ -55,30 +55,45 @@ export const WeatherWidget = (): JSX.Element => {
     return () => webSocketClient.close();
   }, []);
 
-  return (
-    <div className={classes.WeatherWidget}>
-      {configLoading ||
-        (config.WEATHER_API_KEY && weather.id > 0 && (
-          <Fragment>
-            <div className={classes.WeatherIcon}>
-              <WeatherIcon
-                weatherStatusCode={weather.conditionCode}
-                isDay={weather.isDay}
-              />
-            </div>
-            <div className={classes.WeatherDetails}>
-              {/* TEMPERATURE */}
-              {config.isCelsius ? (
-                <span>{weather.tempC}°C</span>
-              ) : (
-                <span>{Math.round(weather.tempF)}°F</span>
-              )}
+  const widget_contents = configLoading ||
+    (config.WEATHER_API_KEY && weather.id > 0 && (
+      <Fragment>
+        <div className={classes.WeatherIcon}>
+          <WeatherIcon
+            weatherStatusCode={weather.conditionCode}
+            isDay={weather.isDay}
+          />
+        </div>
+        <div className={classes.WeatherDetails}>
+          {/* TEMPERATURE */}
+          {config.isCelsius ? (
+            <span>{weather.tempC}&deg;C</span>
+          ) : (
+            <span>{Math.round(weather.tempF)}&deg;F</span>
+          )}
 
-              {/* ADDITIONAL DATA */}
-              <span>{weather[config.weatherData]}%</span>
-            </div>
-          </Fragment>
-        ))}
-    </div>
-  );
+          {/* ADDITIONAL DATA */}
+          <span>{weather[config.weatherData]}%</span>
+        </div>
+      </Fragment>
+    ));
+
+  if (config.weatherDetailsUrl) {
+    return (
+      <a
+        className={classes.WeatherWidget}
+        href={config.weatherDetailsUrl}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {widget_contents}
+      </a>
+    );
+  } else {
+    return (
+      <div className={classes.WeatherWidget}>
+        {widget_contents}
+      </div>
+    )
+  }
 };

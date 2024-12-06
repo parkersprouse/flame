@@ -3,26 +3,32 @@
   "version": "0.1.0",
   "description": "Self-hosted start page",
   "main": "index.js",
-  "scripts": {
-    "start": "node server.js",
-    "init-server": "echo Instaling server dependencies && npm install",
-    "init-client": "cd client && echo Instaling client dependencies && npm install",
-    "dir-init": "npx mkdirp data public && touch public/flame.css public/customQueries.json",
-    "dev-init": "npm run dir-init && npm run init-server && npm run init-client",
-    "dev-server": "nodemon server.js -e js",
-    "dev-client": "npm start --prefix client",
-    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "skaffold": "concurrently \"npm run init-client\" \"npm run dev-server\""
-  },
-  "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "^20",
+    "pnpm": "^9"
+  },
+  "scripts": {
+    "start": "pnpm run dev",
+    "serve": "node server.js",
+    "init-server": "echo 'Installing server dependencies' && pnpm install",
+    "init-client": "cd client && echo 'Installing client dependencies' && pnpm install",
+    "init": "node ./bin/create_dirs.mjs && pnpm run init-server && pnpm run init-client",
+    "dev-server": "nodemon server.js -e js",
+    "dev-client": "cd client && pnpm start",
+    "dev": "concurrently \"pnpm run dev-server\" \"pnpm run dev-client\"",
+    "skaffold": "concurrently \"pnpm run init-client\" \"pnpm run dev-server\"",
+    "build": "cd client && echo 'Building client' && pnpm run build",
+    "clean": "rimraf -I -g \"**/node_modules\"",
+    "clean:hard": "rimraf -I -g \"**/pnpm-lock.yaml\" && pnpm run clean"
+  },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.28.0",
     "@kubernetes/client-node": "^0.15.1",
     "@types/express": "^4.17.13",
     "axios": "^0.24.0",
     "concurrently": "^6.3.0",
     "docker-secret": "^1.2.4",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.3",
@@ -33,6 +39,7 @@
     "ws": "^8.2.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "rimraf": "^6.0.1"
   }
 }

@@ -1,15 +1,15 @@
 .SettingsButton {
   width: 35px;
   height: 35px;
-  background-color: var(--color-accent);
+  /* background-color: var(--color-accent); */
   border-radius: 50%;
   position: fixed;
   bottom: var(--spacing-ui);
-  left: var(--spacing-ui);
+  right: var(--spacing-ui);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.25;
+  opacity: 0.5;
   transition: all 0.3s;
   visibility: hidden;
 }

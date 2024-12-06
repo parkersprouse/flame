@@ -1,0 +1,14 @@
+[phases.setup]
+cmds = ['...', 'npm install -g corepack', 'corepack enable', 'corepack prepare pnpm@9 --activate']
+
+[phases.install]
+dependsOn = ['setup']
+cmds = ['pnpm install --frozen-lockfile']
+
+[phases.build]
+dependsOn = ['install']
+cmds = ['pnpm run init', 'pnpm run build']
+
+[start]
+dependsOn = ['build']
+cmd = 'pnpm run serve'

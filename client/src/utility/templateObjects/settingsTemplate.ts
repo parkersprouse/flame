@@ -24,10 +24,11 @@ export const uiSettingsTemplate: UISettingsForm = {
 
 export const weatherSettingsTemplate: WeatherForm = {
   WEATHER_API_KEY: '',
+  isCelsius: false,
   lat: 0,
   long: 0,
-  isCelsius: true,
-  weatherData: 'cloud',
+  weatherData: 'humidity',
+  weatherDetailsUrl: '',
 };
 
 export const generalSettingsTemplate: GeneralForm = {

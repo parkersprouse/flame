@@ -10,21 +10,24 @@
 }
 
 .SettingsNavLink {
-  padding-left: 7px;
-  border-left: 3px solid transparent;
-  display: flex;
   align-items: center;
+  border-left: 3px solid transparent;
+  color: var(--color-primary);
+  display: flex;
   height: 40px;
+  padding-left: 7px;
+  text-decoration: none;
   transition: all 0.3s;
 }
 
 .SettingsNavLink:hover,
 .SettingsNavLink:focus {
   border-left: 3px solid var(--color-primary);
+  text-decoration: none;
 }
 
 .SettingsNavLinkActive {
-  border-left: 3px solid var(--color-primary);
+  border-left: 3px solid var(--color-accent);
 }
 
 @media (min-width: 480px) {

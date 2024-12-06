@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('@dotenvx/dotenvx').config({
+  path: ['.env', '.env.development'],
+});
 const http = require('http');
 
 // Database

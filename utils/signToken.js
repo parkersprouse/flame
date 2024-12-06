@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const signToken = (expiresIn) => {
-  const token = jwt.sign({ app: 'flame' }, process.env.SECRET, { expiresIn });
+  const token = jwt.sign({ app: 'flame' }, process.env.JWT_SECRET, { expiresIn });
   return token;
 };
 

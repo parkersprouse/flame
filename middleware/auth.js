@@ -11,10 +11,9 @@ const auth = (req, res, next) => {
 
   if (token) {
     try {
-      jwt.verify(token, process.env.SECRET);
-    } finally {
+      jwt.verify(token, process.env.JWT_SECRET);
       tokenIsValid = true;
-    }
+    } catch {}
   }
 
   req.isAuthenticated = tokenIsValid;

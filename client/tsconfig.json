@@ -22,5 +22,13 @@
   },
   "include": [
     "src"
+  ],
+  "types": [
+    "react",
+    "react-beautiful-dnd",
+    "react-dom",
+    "react-redux",
+    "react-router",
+    "react-router-dom"
   ]
 }

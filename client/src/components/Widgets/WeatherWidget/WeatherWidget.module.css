@@ -3,6 +3,11 @@
   visibility: hidden;
 }
 
+.WeatherWidget a,
+.WeatherWidget a:hover {
+  text-decoration: none;
+}
+
 .WeatherDetails {
   display: flex;
   flex-direction: column;
